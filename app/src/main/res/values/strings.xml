@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Book Mania</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="book">Book Information</string>
+    <string name="bookTitle">Title</string>
+    <string name="bookPrice">Price</string>
+    <string name="categoryType">Category</string>
+    <string name="bookDescription">Description</string>
+    <string name="sellBook">Sell Book</string>
+    <string-array name="categoryList">
+        <item>Fiction</item>
+        <item>Non-Fiction</item>
+        <item>TextBook</item>
+        <item>Biography</item>
+        <item>Philosophy</item>
+    </string-array>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
