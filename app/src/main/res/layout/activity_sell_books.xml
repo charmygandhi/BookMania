@@ -25,6 +25,14 @@
             android:layout_width="fill_parent">
         </EditText>
         <EditText
+            android:id="@+id/etDescription"
+            android:layout_height="wrap_content"
+            android:hint="@string/bookDescription"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:layout_width="fill_parent">
+        </EditText>
+        <EditText
             android:id="@+id/etPrice"
             android:layout_height="wrap_content"
             android:hint="@string/bookPrice"
@@ -32,11 +40,10 @@
             android:layout_width="fill_parent">
         </EditText>
         <EditText
-            android:id="@+id/etDescription"
+            android:id="@+id/etAddress"
             android:layout_height="wrap_content"
-            android:hint="@string/bookDescription"
-            android:inputType="textMultiLine"
-            android:lines="5"
+            android:hint="@string/address"
+            android:inputType="textPersonName"
             android:layout_width="fill_parent">
         </EditText>
         <Spinner

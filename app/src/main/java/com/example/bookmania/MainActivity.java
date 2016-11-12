@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void selectDrawerItem(MenuItem item) {
         Fragment fragment = null;
-        //Class fragmentClass;
+
         switch(item.getItemId()){
             case R.id.nav_browse_books:
                // fragment = new BrowseBooks();
@@ -80,13 +80,6 @@ public class MainActivity extends AppCompatActivity {
             default:
                // fragmentClass = BrowseBooks.class;
         }
-
-      /*  try{
-            fragment = (Fragment)fragmentClass.newInstance();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }*/
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.flContent,fragment);
