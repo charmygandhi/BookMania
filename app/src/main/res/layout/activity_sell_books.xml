@@ -17,6 +17,24 @@
             android:text="@string/book"
             android:textSize="10pt">
         </TextView>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Select Photo"
+            android:id="@+id/btnselectPhoto"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp" >
+
+            <ImageView
+                android:id="@+id/viewImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_menu_camera"/>
+
+        </LinearLayout>
         <EditText
             android:id="@+id/etTitle"
             android:layout_height="wrap_content"
