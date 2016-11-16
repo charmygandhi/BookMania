@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch(item.getItemId()){
             case R.id.nav_browse_books:
-               // fragment = new BrowseBooks();
+                fragment = new BrowseBooks();
                 break;
             case R.id.nav_sell_books:
                 fragment = new SellBooks();

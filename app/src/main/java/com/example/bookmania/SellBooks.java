@@ -183,6 +183,9 @@ public class SellBooks extends Fragment implements View.OnClickListener {
         books.setImage(imageEncoded);
     }
 
+
+
+
     private void addBook() {
         FirebaseApp app = FirebaseApp.getInstance();
         FirebaseDatabase database = FirebaseDatabase.getInstance(app);
