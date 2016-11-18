@@ -46,13 +46,13 @@ public class CustomBookAdapter extends ArrayAdapter<Books> {
         {
             TextView tt = (TextView)v.findViewById(R.id.toptext);
             TextView bt = (TextView)v.findViewById(R.id.bottomtext);
-            ImageView img = (ImageView)v.findViewById(R.id.displayImage);
+            ImageView img = (ImageView)v.findViewById(R.id.list_image);
 
             if(tt != null){
                 tt.setText(b.getTitle());
             }
             if(bt != null){
-                bt.setText(b.getPrice());
+                bt.setText("$" + b.getPrice());
             }
             if(img != null){
                 String image = b.getImage();

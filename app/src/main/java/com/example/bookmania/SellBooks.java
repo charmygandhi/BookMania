@@ -206,5 +206,7 @@ public class SellBooks extends Fragment implements View.OnClickListener {
         books.setDescription(description);
 
         ref.child("Books").push().setValue(books);
+
+        getFragmentManager().beginTransaction().replace(R.id.flContent,new BrowseBooks()).commit();
     }
 }

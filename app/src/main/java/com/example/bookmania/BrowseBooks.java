@@ -9,9 +9,7 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.ChildEventListener;
@@ -28,8 +26,6 @@ public class BrowseBooks extends Fragment {
     private ArrayList<Books> books,b;
     private ListView listView;
     private CustomBookAdapter bookAdapter;
-    TextView textView;
-    ImageView imageView;
 
     public BrowseBooks() {
         // Required empty public constructor
@@ -65,12 +61,6 @@ public class BrowseBooks extends Fragment {
 
         listView = (ListView)getActivity().findViewById(R.id.listview);
         retrieve();
-        //textView = (TextView)getActivity().findViewById(R.id.textView)
-        //imageView = (ImageView)getActivity().findViewById(R.id.displayImage);
-
-        //bookAdapter = new CustomBookAdapter(BrowseBooks.this.getContext(),R.layout.list_item,b);
-        //listView.setAdapter(bookAdapter);
-
     }
 
     private void retrieve() {
@@ -84,10 +74,6 @@ public class BrowseBooks extends Fragment {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()){
                     Books b = ds.getValue(Books.class);
-                   // textView.setText(b.getTitle());
-                    //Toast.makeText(BrowseBooks.this.getActivity(),"Title: " + b.getTitle(),Toast.LENGTH_LONG).show();
-                   /* String image = b.getImage();
-                    imageView.setImageBitmap(decodeBitmap(image));*/
                     books.add(b);
                 }
               bookAdapter = new CustomBookAdapter(BrowseBooks.this.getContext(),R.layout.list_item,books);
@@ -115,7 +101,5 @@ public class BrowseBooks extends Fragment {
 
             }
         });
-
-        //return books;
     }
 }
