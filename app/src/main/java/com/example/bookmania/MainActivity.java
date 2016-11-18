@@ -47,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
 
         nvDrawer = (NavigationView)findViewById(R.id.nvView);
         setupDrawerContent(nvDrawer);
+
+        if(savedInstanceState == null){
+            MenuItem item = nvDrawer.getMenu().getItem(0);
+            selectDrawerItem(item);
+        }
     }
 
     private ActionBarDrawerToggle setupDrawerToggle() {
@@ -78,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                // fragmentClass = Login.class;
                 break;
             default:
-               // fragmentClass = BrowseBooks.class;
+                fragment = new BrowseBooks();
         }
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

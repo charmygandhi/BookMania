@@ -3,16 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.bookmania.BrowseBooks">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView" />
-
-    <ImageView
+   <!-- <ImageView
         android:id="@+id/displayImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_menu_camera"/>
+        android:src="@drawable/ic_menu_camera"/>-->
+
+        <ListView
+        android:id="@+id/listview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/num_items"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Will show number of listed items" />
+    </LinearLayout>
+
+
 </FrameLayout>

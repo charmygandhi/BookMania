@@ -13,6 +13,21 @@ public class Books {
     public String category;
     public String address;
 
+    public Books()
+    {
+        super();
+    }
+
+    public Books(String title,String price,String description,String image,String category,String address)
+    {
+        this.title = title;
+        this.price = price;
+        this.description = description;
+        this.image = image;
+        this.category = category;
+        this.address = address;
+    }
+
 
     public String getTitle(){
         return title;
