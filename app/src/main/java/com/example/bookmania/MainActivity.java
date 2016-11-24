@@ -80,7 +80,10 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new SellBooks();
                 break;
             case R.id.nav_login:
-               // fragmentClass = Login.class;
+               fragment = new LoginActivity();
+                break;
+            case R.id.nav_register:
+                fragment = new RegisterActivity();
                 break;
             default:
                 fragment = new BrowseBooks();

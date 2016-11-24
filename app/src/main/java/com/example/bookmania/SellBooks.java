@@ -44,6 +44,7 @@ public class SellBooks extends Fragment implements View.OnClickListener {
     private Button btnSell,btnSelectPhoto;
     private ImageView viewImage;
     Books books = null;
+    UserSessionManager sessionManager;
 
     public SellBooks() {
         // Required empty public constructor
@@ -59,6 +60,9 @@ public class SellBooks extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        sessionManager = new UserSessionManager(getContext());
+
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_sell_books, container, false);
         return view;
@@ -67,6 +71,8 @@ public class SellBooks extends Fragment implements View.OnClickListener {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+
         etTitle = (EditText)getActivity().findViewById(R.id.etTitle);
         etDescription = (EditText)getActivity().findViewById(R.id.etDescription);
         etAddress = (EditText)getActivity().findViewById(R.id.etAddress);
@@ -196,8 +202,6 @@ public class SellBooks extends Fragment implements View.OnClickListener {
         String description = etDescription.getText().toString();
         String address = etAddress.getText().toString();
         String category = categorySpinner.getSelectedItem().toString();
-
-
 
         books.setTitle(title);
         books.setPrice(price);

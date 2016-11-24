@@ -1,14 +1,13 @@
 package com.example.bookmania;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.firebase.FirebaseApp;
@@ -47,14 +46,6 @@ public class BrowseBooks extends Fragment {
     }
 
 
-    private Bitmap decodeBitmap(String image)
-    {
-        byte[] bytes;
-        bytes = Base64.decode(image,Base64.DEFAULT);
-        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-        return bitmap;
-    }
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -76,9 +67,7 @@ public class BrowseBooks extends Fragment {
                     Books b = ds.getValue(Books.class);
                     books.add(b);
                 }
-              bookAdapter = new CustomBookAdapter(BrowseBooks.this.getContext(),R.layout.list_item,books);
-              listView.setAdapter(bookAdapter);
-
+                setListView();
             }
 
             @Override
@@ -101,5 +90,26 @@ public class BrowseBooks extends Fragment {
 
             }
         });
+    }
+
+    private void setListView() {
+        bookAdapter = new CustomBookAdapter(BrowseBooks.this.getContext(), R.layout.list_item,books);
+        listView.setAdapter(bookAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(BrowseBooks.this.getActivity(),BookDescription.class);
+                Books book = (Books)bookAdapter.getItem(i);
+                intent.putExtra("title",book.getTitle());
+                intent.putExtra("price",book.getPrice());
+                intent.putExtra("address",book.getAddress());
+                intent.putExtra("image",book.getImage());
+                intent.putExtra("description",book.getDescription());
+                startActivity(intent);
+
+            }
+        });
+
     }
 }

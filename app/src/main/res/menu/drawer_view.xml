@@ -13,5 +13,10 @@
             android:id="@+id/nav_login"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Login"/>
+
+        <item
+            android:id="@+id/nav_register"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Register"/>
     </group>
 </menu>
