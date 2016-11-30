@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView nvDrawer;
 
     public ActionBarDrawerToggle drawerToggle;
+    UserSessionManager sessionManager;
 
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        sessionManager = new UserSessionManager(getApplicationContext());
 
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -75,18 +79,43 @@ public class MainActivity extends AppCompatActivity {
         switch(item.getItemId()){
             case R.id.nav_browse_books:
                 fragment = new BrowseBooks();
+                setTitle("Browse Books");
                 break;
             case R.id.nav_sell_books:
-                fragment = new SellBooks();
+                if(sessionManager.checkLogin()){
+                    Toast.makeText(MainActivity.this,"Please Log in!",Toast.LENGTH_LONG).show();
+                    fragment = new LoginActivity();
+                    setTitle("Login");
+                }
+                else {
+                    fragment = new SellBooks();
+                    setTitle("Sell Books");
+                }
                 break;
             case R.id.nav_login:
                fragment = new LoginActivity();
+                setTitle("Login");
                 break;
             case R.id.nav_register:
                 fragment = new RegisterActivity();
+                setTitle("Register");
+                break;
+            case R.id.nav_logout:
+                if(!sessionManager.checkLogin()) {
+                    sessionManager.logoutUser();
+                    Toast.makeText(MainActivity.this,"Logged out!",Toast.LENGTH_LONG).show();
+                    fragment = new BrowseBooks();
+                    setTitle("Browse Books");
+                }
+                else {
+                    Toast.makeText(MainActivity.this,"Please Log in!",Toast.LENGTH_LONG).show();
+                    fragment = new LoginActivity();
+                    setTitle("Login");
+                }
                 break;
             default:
                 fragment = new BrowseBooks();
+                setTitle("Browse Books");
         }
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -94,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         ft.commit();
 
         item.setChecked(true);
-        setTitle(item.getTitle());
+      //  setTitle(item.getTitle());
         mDrawer.closeDrawers();
     }
 

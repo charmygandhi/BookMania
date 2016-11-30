@@ -52,6 +52,8 @@ public class BrowseBooks extends Fragment {
 
         listView = (ListView)getActivity().findViewById(R.id.listview);
         retrieve();
+
+
     }
 
     private void retrieve() {
@@ -63,9 +65,11 @@ public class BrowseBooks extends Fragment {
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()){
-                    Books b = ds.getValue(Books.class);
-                    books.add(b);
+                if(dataSnapshot.getKey().equals("Books")) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        Books b = ds.getValue(Books.class);
+                        books.add(b);
+                    }
                 }
                 setListView();
             }
@@ -106,6 +110,7 @@ public class BrowseBooks extends Fragment {
                 intent.putExtra("address",book.getAddress());
                 intent.putExtra("image",book.getImage());
                 intent.putExtra("description",book.getDescription());
+                intent.putExtra("user",book.getUser());
                 startActivity(intent);
 
             }

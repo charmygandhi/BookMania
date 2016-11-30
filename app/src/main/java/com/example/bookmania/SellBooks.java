@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
@@ -45,6 +46,7 @@ public class SellBooks extends Fragment implements View.OnClickListener {
     private ImageView viewImage;
     Books books = null;
     UserSessionManager sessionManager;
+    private boolean hasImage = false;
 
     public SellBooks() {
         // Required empty public constructor
@@ -72,6 +74,8 @@ public class SellBooks extends Fragment implements View.OnClickListener {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+
+        Toast.makeText(getActivity()," " + sessionManager.getUser() + " ",Toast.LENGTH_LONG).show();
 
         etTitle = (EditText)getActivity().findViewById(R.id.etTitle);
         etDescription = (EditText)getActivity().findViewById(R.id.etDescription);
@@ -175,6 +179,9 @@ public class SellBooks extends Fragment implements View.OnClickListener {
                 String picturePath = c.getString(columnIndex);
                 c.close();
                 Bitmap thumbnail = (BitmapFactory.decodeFile(picturePath));
+                if(thumbnail != null){
+                    hasImage = true;
+                }
                 Log.d("path of image ", picturePath + "");
                 viewImage.setImageBitmap(thumbnail);
                 encodeBitmap(thumbnail);
@@ -184,15 +191,13 @@ public class SellBooks extends Fragment implements View.OnClickListener {
 
     private void encodeBitmap(Bitmap bitmap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        bitmap.compress(Bitmap.CompressFormat.PNG,100,baos);
         String imageEncoded = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
         books.setImage(imageEncoded);
     }
 
-
-
-
     private void addBook() {
+
         FirebaseApp app = FirebaseApp.getInstance();
         FirebaseDatabase database = FirebaseDatabase.getInstance(app);
         DatabaseReference ref = database.getReference();
@@ -203,11 +208,32 @@ public class SellBooks extends Fragment implements View.OnClickListener {
         String address = etAddress.getText().toString();
         String category = categorySpinner.getSelectedItem().toString();
 
+       if(title.isEmpty()) {
+           etTitle.setError("Title is required");
+           return;
+       }
+
+        if(price.isEmpty()) {
+            etPrice.setError("Price is required");
+            return;
+        }
+
+        if(address.isEmpty()){
+            etAddress.setError("Address is required");
+            return;
+        }
+
+        if(!hasImage){
+            Toast.makeText(getActivity(),"Please upload an image!",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         books.setTitle(title);
         books.setPrice(price);
         books.setAddress(address);
         books.setCategory(category);
         books.setDescription(description);
+        books.setUser(sessionManager.getUser());
 
         ref.child("Books").push().setValue(books);
 

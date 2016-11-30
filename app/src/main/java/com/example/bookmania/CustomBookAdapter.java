@@ -55,8 +55,10 @@ public class CustomBookAdapter extends ArrayAdapter<Books> {
                 bt.setText("$" + b.getPrice());
             }
             if(img != null){
-                String image = b.getImage();
-                img.setImageBitmap(decodeBitmap(image));
+                if(b.getImage() != null) {
+                    String image = b.getImage();
+                    img.setImageBitmap(decodeBitmap(image));
+                }
             }
         }
         return v;

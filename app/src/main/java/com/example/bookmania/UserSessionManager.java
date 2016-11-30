@@ -27,18 +27,15 @@ public class UserSessionManager {
         editor.commit();
     }
 
+    public String getUser(){
+        String user = sharedPreferences.getString("user",null);
+        return user;
+    }
+
     public boolean checkLogin()
     {
         //if user is not logged in redirect them to main login page
         if(!this.isUserLoggedIn()){
-
-
-            /*Intent i = new Intent(_context,LoginActivity.class);
-            //remove's all the activities on the top
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            // Add new Flag to start new Activity
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            _context.startActivity(i);*/
             return true;
         }
         return false;

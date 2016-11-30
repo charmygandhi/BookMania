@@ -14,14 +14,20 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class RegisterActivity extends Fragment implements View.OnClickListener {
     private FirebaseAuth auth;
     private EditText etEmail,etPassword,etConfirmPassword;
     private Button btnRegister;
+    Users users;
+    String email;
 
     public RegisterActivity() {
         auth = FirebaseAuth.getInstance();
@@ -63,9 +69,10 @@ public class RegisterActivity extends Fragment implements View.OnClickListener {
     }
 
     private void registerUser() {
-        String email = etEmail.getText().toString();
+        email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
         String confirmPassword = etConfirmPassword.getText().toString();
+
 
         if(TextUtils.isEmpty(email)){
             Toast.makeText(getActivity(),"Enter email address!",Toast.LENGTH_LONG).show();
@@ -86,12 +93,28 @@ public class RegisterActivity extends Fragment implements View.OnClickListener {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
               if(task.isSuccessful()){
-                  getFragmentManager().beginTransaction().replace(R.id.flContent,new SellBooks()).commit();
+                  saveUser();
+                  getFragmentManager().beginTransaction().replace(R.id.flContent,new LoginActivity()).commit();
               }
               else{
                 Toast.makeText(getActivity(),"Registration Error",Toast.LENGTH_LONG).show();
               }
             }
         });
+    }
+
+    public void saveUser(){
+        FirebaseApp app = FirebaseApp.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance(app);
+        DatabaseReference ref = database.getReference();
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        users = new Users();
+
+        users.setEmail(user.getEmail());
+        users.setUserId(user.getUid());
+        ref.child("Users").push().setValue(users);
+
     }
 }

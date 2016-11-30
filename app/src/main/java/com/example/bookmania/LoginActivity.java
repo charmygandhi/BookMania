@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,13 +66,13 @@ public class LoginActivity extends Fragment implements View.OnClickListener {
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
 
-        if(TextUtils.isEmpty(email)){
-            Toast.makeText(getActivity(),"Enter email address!",Toast.LENGTH_LONG).show();
+        if(email.isEmpty()){
+            etEmail.setError("Please enter email id!");
             return;
         }
 
-        if(TextUtils.isEmpty(password)){
-            Toast.makeText(getActivity(),"Enter password!",Toast.LENGTH_LONG).show();
+        if(password.isEmpty()){
+            etPassword.setError("Please enter your password!");
             return;
         }
 
@@ -99,6 +98,7 @@ public class LoginActivity extends Fragment implements View.OnClickListener {
             String uid = user.getUid();
             sessionManager = new UserSessionManager(getContext());
             sessionManager.createUserLoginSession(uid);
+
         }
     }
 }

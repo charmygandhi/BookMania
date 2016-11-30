@@ -12,6 +12,7 @@ public class Books {
     public String image;
     public String category;
     public String address;
+    public String user;
 
     public Books()
     {
@@ -75,5 +76,13 @@ public class Books {
 
     public void setAddress(String address){
         this.address = address;
+    }
+
+    public String getUser(){
+        return user;
+    }
+
+    public void setUser(String user){
+        this.user = user;
     }
 }

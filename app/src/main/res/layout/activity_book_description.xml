@@ -11,32 +11,109 @@
         android:layout_height="fill_parent">
         <ImageView
             android:id="@+id/viewImage"
-            android:layout_width="275dp"
-            android:layout_height="132dp"
-            android:src="@drawable/ic_menu_camera"/>
+            android:layout_width="386dp"
+            android:layout_height="207dp"
+            android:padding="5dp"
+            android:layout_marginEnd="16dp"
+            android:scaleType="center"
+            android:src="@drawable/ic_menu_camera"
+            android:layout_marginRight="16dp" />
+
 
         <TextView
             android:text="TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="#009688"
+            android:fontFamily="Arial"
+            android:textSize="30sp"
             android:id="@+id/txtTitle" />
 
         <TextView
             android:text="TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="#009688"
+            android:fontFamily="Arial"
+            android:textSize="25sp"
             android:id="@+id/txtPrice" />
 
-        <TextView
-            android:text="TextView"
+           <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+
+
+        <Button
+            android:text="Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txtAddress" />
+            android:background="#009688"
+            android:id="@+id/btnEmail" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1">
 
         <TextView
-            android:text="TextView"
-            android:layout_width="match_parent"
+            android:text="Address"
+            android:layout_width="176dp"
             android:layout_height="wrap_content"
-            android:id="@+id/txtDescription" />
+            android:textSize="20sp"
+            android:id="@+id/text1" />
+
+            <TextView
+                android:text="Addresstext"
+                android:layout_width="169dp"
+                android:layout_height="32dp"
+                android:textSize="20sp"
+                android:id="@+id/txtAddress" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:text="Description"
+                android:layout_width="176dp"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:id="@+id/text2" />
+
+            <TextView
+                android:text="Description text"
+                android:layout_width="169dp"
+                android:layout_height="32dp"
+                android:textSize="20sp"
+                android:id="@+id/txtDescription" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:text="For Sale By"
+                android:layout_width="176dp"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:id="@+id/text3" />
+
+            <TextView
+                android:text="Email text"
+                android:layout_width="169dp"
+                android:layout_height="32dp"
+                android:textSize="20sp"
+                android:id="@+id/txtEmail" />
+
+        </LinearLayout>
+
+
     </LinearLayout>
 </ScrollView>
