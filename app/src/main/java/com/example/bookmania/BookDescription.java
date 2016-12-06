@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,8 +53,7 @@ public class BookDescription extends AppCompatActivity {
         txtAddress.setText(address);
         imageView.setImageBitmap(decodeBitmap(image));
         getUserProfile();
-      //  String email = getUserProfile();
-        //txtEmail.setText(email);
+
 
     }
 
@@ -69,7 +69,6 @@ public class BookDescription extends AppCompatActivity {
                 Map<String,Object> value = (Map<String, Object>) dataSnapshot.getValue();
                 email[0] = (String) value.get("email");
                 txtEmail.setText(email[0]);
-               Toast.makeText(getApplication()," " + email[0], Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -100,5 +99,18 @@ public class BookDescription extends AppCompatActivity {
         bytes = Base64.decode(image,Base64.DEFAULT);
         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
         return bitmap;
+    }
+
+    public void contactOwner(View view){
+        Toast.makeText(getApplication(),txtEmail.getText(),Toast.LENGTH_LONG).show();
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setType("text/plain");
+        String emailTo = txtEmail.getText().toString();
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] {emailTo});
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT,txtTitle.getText());
+
+        startActivity(emailIntent);
+
+        finish();
     }
 }

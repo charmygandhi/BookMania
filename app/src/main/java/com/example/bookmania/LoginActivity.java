@@ -42,6 +42,7 @@ public class LoginActivity extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
@@ -87,6 +88,7 @@ public class LoginActivity extends Fragment implements View.OnClickListener {
                     saveUser();
                     Toast.makeText(getActivity(),"Logged in Successfully!",Toast.LENGTH_LONG).show();
                     getFragmentManager().beginTransaction().replace(R.id.flContent,new BrowseBooks()).commit();
+                    getActivity().setTitle("Browse Books");
                 }
             }
         });

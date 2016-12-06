@@ -2,26 +2,26 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_browse_books"
-            android:icon = "@drawable/ic_menu_gallery"
+            android:icon = "@drawable/ic_browse_books"
             android:checked="true"
             android:title="Browse Books"/>
         <item
             android:id="@+id/nav_sell_books"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/icon_sell_books"
             android:title="Sell Books"/>
         <item
             android:id="@+id/nav_login"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/icon_login"
             android:title="Login"/>
 
         <item
             android:id="@+id/nav_register"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/icon_register"
             android:title="Register"/>
 
         <item
             android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/icon_logout"
             android:title="Logout"/>
     </group>
 </menu>

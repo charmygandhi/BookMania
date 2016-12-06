@@ -75,12 +75,14 @@ public class RegisterActivity extends Fragment implements View.OnClickListener {
 
 
         if(TextUtils.isEmpty(email)){
-            Toast.makeText(getActivity(),"Enter email address!",Toast.LENGTH_LONG).show();
+            etEmail.setError("Please enter email id!");
+            //Toast.makeText(getActivity(),"Enter email address!",Toast.LENGTH_LONG).show();
             return;
         }
 
         if(TextUtils.isEmpty(password)){
-            Toast.makeText(getActivity(),"Enter password!",Toast.LENGTH_LONG).show();
+            etPassword.setError("Please enter your password!");
+            //Toast.makeText(getActivity(),"Enter password!",Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -95,6 +97,7 @@ public class RegisterActivity extends Fragment implements View.OnClickListener {
               if(task.isSuccessful()){
                   saveUser();
                   getFragmentManager().beginTransaction().replace(R.id.flContent,new LoginActivity()).commit();
+                  getActivity().setTitle("Login");
               }
               else{
                 Toast.makeText(getActivity(),"Registration Error",Toast.LENGTH_LONG).show();

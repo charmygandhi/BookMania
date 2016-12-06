@@ -75,7 +75,7 @@ public class SellBooks extends Fragment implements View.OnClickListener {
         super.onActivityCreated(savedInstanceState);
 
 
-        Toast.makeText(getActivity()," " + sessionManager.getUser() + " ",Toast.LENGTH_LONG).show();
+       //Toast.makeText(getActivity()," " + sessionManager.getUser() + " ",Toast.LENGTH_LONG).show();
 
         etTitle = (EditText)getActivity().findViewById(R.id.etTitle);
         etDescription = (EditText)getActivity().findViewById(R.id.etDescription);
@@ -238,5 +238,6 @@ public class SellBooks extends Fragment implements View.OnClickListener {
         ref.child("Books").push().setValue(books);
 
         getFragmentManager().beginTransaction().replace(R.id.flContent,new BrowseBooks()).commit();
+        getActivity().setTitle("Browse Books");
     }
 }

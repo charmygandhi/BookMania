@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         mDrawer.addDrawerListener(drawerToggle);
 
         nvDrawer = (NavigationView)findViewById(R.id.nvView);
+        nvDrawer.setItemIconTintList(null);
         setupDrawerContent(nvDrawer);
 
         if(savedInstanceState == null){
